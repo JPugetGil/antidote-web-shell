@@ -41,7 +41,7 @@ make run
 ```
 We have now deployed this configuration:
 
-```mermai
+```mermaid
 flowchart LR
     subgraph Clients
     Shell1
