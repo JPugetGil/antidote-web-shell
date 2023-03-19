@@ -51,6 +51,9 @@ const staticRouter = express.Router();
 staticRouter.get('/', function (req, res, next) {
     res.sendFile(viewPath + 'index.html');
 });
+staticRouter.get('/tasks', function (req, res, next) {
+    res.sendFile(viewPath + 'index-tasks.html');
+});
 app.use("/", staticRouter);
 
 /* API routing. */
@@ -118,6 +121,29 @@ apiRouter.route('/:rep_id/count/:counter_id')
             log('Decrement', counterId, 'on replica', repId)
             res.json({ status: 'OK' });
         });
+    });
+
+
+// Tasks list API
+apiRouter.route('/:rep_id/tasks/:list_id')
+    .get(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
+    });
+
+// Tasks API
+apiRouter.route('/:rep_id/tasks/:list_id/:task_id')
+    .get(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
+    })
+    .put(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
+    })
+    .delete(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
     });
 
 // Network partition API
