@@ -25,7 +25,7 @@ services:
       SHORT_NAME: "true"
 
   link:
-    image: erlang:21-slim
+    image: erlang:21
     volumes:
       - .:/tmp
     command: 'escript /tmp/connect.erl'
