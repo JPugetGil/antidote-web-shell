@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   antidote1:
-    image: itoumlilt/antidotedb:v0.2.0-alpine-iptables
+    image: antidotedb/antidote:0.2.0
     ports:
      - "127.0.0.1:8087:8087"
     environment:
@@ -9,7 +9,7 @@ services:
       SHORT_NAME: "true"
 
   antidote2:
-    image: itoumlilt/antidotedb:v0.2.0-alpine-iptables
+    image: antidotedb/antidote:0.2.0
     ports:
      - "127.0.0.1:8088:8087"
     environment:
@@ -17,7 +17,7 @@ services:
       SHORT_NAME: "true"
       
   antidote3:
-    image: itoumlilt/antidotedb:v0.2.0-alpine-iptables
+    image: antidotedb/antidote:0.2.0
     ports:
      - "127.0.0.1:8089:8087"
     environment:
@@ -25,7 +25,7 @@ services:
       SHORT_NAME: "true"
 
   link:
-    image: erlang:21-slim
+    image: erlang:21
     volumes:
       - .:/tmp
     command: 'escript /tmp/connect.erl'
