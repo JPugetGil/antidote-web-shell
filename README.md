@@ -1,6 +1,6 @@
 # AntidoteDB Java Tutorial
 
-A demonstrative web shell that use [AntidoteDB][AntidoteDB-website] as backend database.
+A demonstrative web shell that use [AntidoteDB](https://www.antidotedb.eu/) as backend database.
 
 ## What you need
 * [Docker](https://docs.docker.com/engine/installation/)
@@ -11,7 +11,7 @@ A demonstrative web shell that use [AntidoteDB][AntidoteDB-website] as backend d
 git clone https://github.com/JPugetGil/antidote-web-shell
 
 ## Getting started
-Requirements: [node.js][nodejs], [npm][npm], [Antidote][antidote-setup].  
+Requirements: [node.js][nodejs], [npm][npm], [Antidote](https://antidotedb.gitbook.io/documentation/quickstart).  
 To build it: `make` (or `npm install`).  
 To run it with a local cluster of Docker containers: `make run`.  
 
