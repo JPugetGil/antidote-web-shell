@@ -1,6 +1,6 @@
 # AntidoteDB Java Tutorial
 
-A demonstrative web shell that use [AntidoteDB][AntidoteDB-website] as backend database.
+A demonstrative web shell that use [AntidoteDB](https://www.antidotedb.eu/) as backend database.
 
 ## What you need
 * [Docker](https://docs.docker.com/engine/installation/)
