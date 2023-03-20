@@ -11,7 +11,7 @@ A demonstrative web shell that use [AntidoteDB][AntidoteDB-website] as backend d
 git clone https://github.com/JPugetGil/antidote-web-shell
 
 ## Getting started
-Requirements: [node.js 8][nodejs], [npm][npm], [Antidote][antidote-setup].  
+Requirements: [node.js][nodejs], [npm][npm], [Antidote][antidote-setup].  
 To build it: `make` (or `npm install`).  
 To run it with a local cluster of Docker containers: `make run`.  
 
@@ -23,21 +23,25 @@ It uses the AntidoteDB configuration specified in `config.js`.
 | Note: make sure you have the software requirements listed above before following next steps. |
 | --- 
 
-
 ### Step 1 : Starting antidote nodes
 The following script installs the dependencies.
 ```bash
 # in root directory
 make
+# if you don't have make installed
+npm install
 ```
 
 ### Step 2 : Starting the application
 The following script starts:
 - three antidote docker containers and set up the inter-dc replication.
-- the antidote-web-shell application at : http://localhost:3000
+- the antidote-web-shell application available at : http://localhost:3000. This is a web shell that allows you to interact with the antidote database (the place where you write commands).
 ```bash
 # in root directory
 make run
+# if you don't have make installed
+docker-compose -f docker/docker-antidote-3dcs.yml up -d
+npm start
 ```
 We have now deployed this configuration:
 
@@ -87,6 +91,7 @@ The task manager client is available at : http://localhost:3000/tasks
 
 ### Resources:
 Some useful references:
+* [API](API.md)
 * [Antidote API ts](https://antidotedb.github.io/antidote_ts_client/)
 * [AntidoteDB source code](https://github.com/AntidoteDB/antidote)
 * [AntidoteDB Documentation](https://antidotedb.gitbook.io/documentation/)

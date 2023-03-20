@@ -146,6 +146,20 @@ apiRouter.route('/:rep_id/tasks/:list_id/:task_id')
         res.json({ status: 'TODO', cont: 'Implement logic' });
     });
 
+const command = (type, param) => {
+    switch (type) {
+        case 'ispart':
+            return `docker-compose -f docker/docker-antidote-3dcs.yml exec --privileged antidote${param} bash -c 'iptables -L -n -v'`
+        case 'create':
+            return `docker-compose -f docker/docker-antidote-3dcs.yml exec -d --privileged antidote${param} bash -c \
+            'iptables -A INPUT -p tcp --dport 8086 -j DROP; iptables -A OUTPUT -p tcp --dport 8086 -j DROP';`;
+        case 'remove':
+            return `docker-compose -f docker/docker-antidote-3dcs.yml exec -d --privileged antidote${param} bash -c \
+            'iptables -D INPUT -p tcp --dport 8086 -j DROP; iptables -D OUTPUT -p tcp --dport 8086 -j DROP';`
+    }
+
+}
+
 // Network partition API
 apiRouter.route('/:rep_id/part')
     .get(function (req, res) {
@@ -159,7 +173,7 @@ apiRouter.route('/:rep_id/part')
             log('Partition replica', repId, 'already set');
             res.json({ status: 'OK', rep: repId });
         } else {
-            spawn(conf.partitionCmd, ['create', repId])
+            spawn(command('create', repId), {shell: true})
                 .on('exit', function (code) {
                     if (code === 0) {
                         log('Partition replica', repId);
@@ -175,7 +189,8 @@ apiRouter.route('/:rep_id/part')
             log('Partition replica', repId, 'already removed');
             res.json({ status: 'OK', rep: repId });
         } else {
-            spawn(conf.partitionCmd, ['remove', repId])
+
+            spawn(command('remove', repId), {shell: true})
                 .on('exit', function (code) {
                     if (code === 0) {
                         log('Remove partition over replica', repId);
