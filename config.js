@@ -12,8 +12,7 @@ const config = {
             host: 'localhost',
             port: 8089
         }
-    ],
-    partitionCmd: './net_part.sh'
+    ]
 };
 
 module.exports = config;

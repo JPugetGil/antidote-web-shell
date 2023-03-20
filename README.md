@@ -66,6 +66,10 @@ flowchart LR
 ```
 
 ### Step 3 : Try the following app commands
+With this application, you can:
+- Get, Increment or decrement a given counter.
+- List elements, Add or remove an element in a given set of elements.
+
 Some features are already implemented in the app, lets try them:
 ~~~~
 - add-wins set:
@@ -81,8 +85,18 @@ Some features are already implemented in the app, lets try them:
 You can also try to disconnect Antidote servers to simulate network partitions (click on "Create partition"), commit some concurrent updates, then reconnect to merge CRDTs (click on "Heal partition").
 
 ### Step 4 : Hands On!!!
-We now want to build our Task management app. Use the provided code as a starting point and implement the following features:
-* Add a new command `tasks add` that takes a list name, a task name and a task description as arguments and creates a new task object in the database.
+We now want to build our Task management app. Users would like to:
+- To have several lists of tasks (their name designates their theme),
+- For each list, we have as many tasks as we want.
+
+A task contains :
+- **A title** that will be considered unique in this list,
+- **A short description** (< 120 characters),
+- **A priority** ('low', 'medium', 'high'),
+- **A deadline** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
+
+Use the provided code as a starting point and edit the [server file](app.js) and [client file](public/js/script-tasks.js) to implement the features below:
+* Add a new command `tasks add` that takes a list name, a task name (unique), a task description, a priority **['low', 'medium', 'high']** and a deadline as arguments and creates a new task object in the database.
 * Add a new command `tasks get` that takes a list name and a task name as argument and prints the task information.
 * Add a new command `tasks remove` that takes a list name and a task name as argument and deletes the task object from the database.
 * Add a new command `tasks list` that takes a list name as argument and prints all the tasks in the list.
