@@ -1,13 +1,13 @@
 html {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
+    position: relative;
+        width: 100%;
+        min-height: 100%;
 }
 
 body {
-  padding-top: 50px; 
-  width: 100%;
-  height: 100%;
+    padding-top: 50px;
+        width: 100%;
+        height: 100%;
 }
 
 .logo {
@@ -18,7 +18,7 @@ body {
 .partitioned {
     border-width: 5px;
     border-color: red;
-    border-style : dashed;
+    border-style: dashed;
 }
 
 .row {
@@ -33,4 +33,14 @@ body {
 
 .container {
     max-width: 80%;
+}
+
+.dots {
+    height: 7px;
+    width: 7px;
+    background-color: #eee;
+    display: flex;
+    border-radius: 50%;
+    margin-left: 7px;
+    margin-right: 7px;
 }

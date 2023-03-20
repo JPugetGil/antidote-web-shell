@@ -100,8 +100,14 @@ Use the provided code as a starting point and edit the [server file](app.js) and
 * Add a new command `tasks get` that takes a list name and a task name as argument and prints the task information.
 * Add a new command `tasks remove` that takes a list name and a task name as argument and deletes the task object from the database.
 * Add a new command `tasks list` that takes a list name as argument and prints all the tasks in the list.
+* Add a new command `tasks listall` that prints all the tasks in all the lists.
 
 The task manager client is available at : http://localhost:3000/tasks
+
+### Step 5 : Advanced features and UI
+* Add a new command `tasks update` that takes a list name, a task name, a field name and a new value as arguments and updates the task object in the database.
+* Display the task list on the UI with the `renderList` function (don't forget to remove the example code).
+* Implements all the commands as a UI feature.
 
 ### Resources:
 Some useful references:

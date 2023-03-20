@@ -37,7 +37,7 @@ $(function () {
             $('#term' + i).terminal(evalAtdCmd, {
                 greetings: false,
                 height: 350,
-                prompt: 'tutorial@antidote' + i + '> ',
+                prompt: `user${i}@tutorial> `,
                 tabcompletion: true,
                 completion: CMDS,
                 name: i

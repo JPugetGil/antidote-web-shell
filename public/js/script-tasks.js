@@ -24,6 +24,45 @@ document.onkeydown = function (e) {
     }
 };
 
+$(document).ready(function () {
+    // FIXME : Remove this code
+    // Create fake todo list
+    const fakeTaskLists = [{
+        title: 'TIW 8 Task list 1',
+        tasks: [
+            {
+                title: 'TIW 8 Task name 1',
+                description: "The task's short description 1",
+                priority: 'high',
+                date: 1680213599000
+            },
+            {
+                title: 'TIW 8 Task name 2',
+                description: "The task's short description 2",
+                priority: 'medium',
+                date: 1680213599000
+            }
+        ]
+    },
+    {
+        title: 'TIW 8 Task list 2',
+        tasks: [
+            {
+                title: 'Task name 1',
+                description: "The task's short description 1",
+                priority: 'low',
+                date: 1680213499000
+            }
+        ]
+    }]
+
+    for (let i = 1; i <= NUM_TERMS; i++) {
+        $("#tasks" + i).append(
+            fakeTaskLists.map(renderList).join('')
+        );
+    }
+});
+
 var terms = [];
 
 $(function () {
@@ -32,8 +71,8 @@ $(function () {
         terms.push(
             $('#term' + i).terminal(evalAtdCmd, {
                 greetings: false,
-                height: 350,
-                prompt: 'tasks@antidote' + i + '> ',
+                height: 240,
+                prompt: `user${i}@tasks> `,
                 tabcompletion: true,
                 completion: CMDS,
                 name: i
@@ -130,4 +169,36 @@ function evalAtdCmd(cmd, term) {
         default:
             terms[tid].echo(UNKNOWN_MSG)
     }
+}
+
+function renderList(taskListInfos) {
+    return `
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="font-weight-bold">${taskListInfos.title}</span>
+            </div>
+            ${taskListInfos.tasks.map(renderTask).join('')}
+        </div>
+    `
+}
+
+function renderTask({ title, description, priority, date }) {
+    return `
+        <div class="mt-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-column">
+                        <span>${title}</span>
+                        <div class="d-flex flex-row align-items-center time-text">
+                            <small>${description}</small>
+                            <span class="dots"></span>
+                            <small>${priority}</small>
+                            <span class="dots"></span>
+                            <small>${new Date(date).toLocaleString()}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
 }
