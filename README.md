@@ -96,7 +96,7 @@ A task contains :
 - **An assignee** (a user name).
 
 Use the provided code as a starting point and edit the [server file](app.js) and [client file](public/js/script-tasks.js) to implement the features below:
-* Add a new command `tasks add` that takes a task name (unique), a task description, a priority **['low', 'medium', 'high']** and a deadline as arguments and creates a new task object in the database,
+* Add a new command `tasks add` that takes a task name (unique), a task description, a priority **['low', 'medium', 'high']**, a deadline, a status and an assignee as arguments and creates a new task object in the database,
 * Add a new command `tasks get` that takes a task name as argument and prints the task information,
 * Add a new command `tasks remove` that takes a task name as argument and deletes the task object from the database,
 * Add a new command `tasks list` that prints all the tasks,
