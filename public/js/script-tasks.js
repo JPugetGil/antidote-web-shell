@@ -27,38 +27,40 @@ document.onkeydown = function (e) {
 $(document).ready(function () {
     // FIXME : Remove this code
     // Create fake todo list
-    const fakeTaskLists = [{
-        title: 'TIW 8 Task list 1',
-        tasks: [
-            {
-                title: 'TIW 8 Task name 1',
-                description: "The task's short description 1",
-                priority: 'high',
-                date: 1680213599000
-            },
-            {
-                title: 'TIW 8 Task name 2',
-                description: "The task's short description 2",
-                priority: 'medium',
-                date: 1680213599000
-            }
-        ]
-    },
-    {
-        title: 'TIW 8 Task list 2',
-        tasks: [
-            {
-                title: 'Task name 1',
-                description: "The task's short description 1",
-                priority: 'low',
-                date: 1680213499000
-            }
-        ]
-    }]
+    const fakeTaskLists = [
+        {
+            title: 'TIW 8 Task name 1',
+            description: "The task's short description 1",
+            priority: 'high',
+            date: 1680213599000,
+            status: 'todo',
+            assignee: 'user1'
+        },
+        {
+            title: 'TIW 8 Task name 2',
+            description: "The task's short description 2",
+            priority: 'medium',
+            date: 1680213599000,
+            status: 'doing',
+            assignee: 'user2'
+        },
+        {
+            title: 'TIW 8 Task name 3',
+            description: "The task's short description 3",
+            priority: 'low',
+            date: 1680213499000,
+            status: 'done',
+            assignee: 'user2'
+        }
+    ]
+
+    const groupedTasks = groupTasksByStatus(fakeTaskLists)
 
     for (let i = 1; i <= NUM_TERMS; i++) {
         $("#tasks" + i).append(
-            fakeTaskLists.map(renderList).join('')
+            renderList(groupedTasks.get('todo'), 'todo'),
+            renderList(groupedTasks.get('doing'), 'doing'),
+            renderList(groupedTasks.get('done'), 'done')
         );
     }
 });
@@ -171,13 +173,27 @@ function evalAtdCmd(cmd, term) {
     }
 }
 
-function renderList(taskListInfos) {
+function groupTasksByStatus(tasks) {
+    const map = new Map();
+    tasks.forEach((item) => {
+        const key = item.status;
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+}
+
+function renderList(taskListInfos, status) {
     return `
         <div class="card">
             <div class="d-flex justify-content-between align-items-center">
-                <span class="font-weight-bold">${taskListInfos.title}</span>
+                <span class="font-weight-bold">${status}</span>
             </div>
-            ${taskListInfos.tasks.map(renderTask).join('')}
+            ${taskListInfos.map(renderTask).join('')}
         </div>
     `
 }

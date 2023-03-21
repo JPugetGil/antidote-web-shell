@@ -85,27 +85,27 @@ Some features are already implemented in the app, lets try them:
 You can also try to disconnect Antidote servers to simulate network partitions (click on "Create partition"), commit some concurrent updates, then reconnect to merge CRDTs (click on "Heal partition").
 
 ### Step 4 : Hands On!!!
-We now want to build our Task management app. Users would like to:
-- To have several lists of tasks (their name designates their theme),
-- For each list, we have as many tasks as we want.
+We now want to build our Task management app. Users would like to use a scrum board.
 
 A task contains :
 - **A title** that will be considered unique in this list,
 - **A short description** (< 120 characters),
 - **A priority** ('low', 'medium', 'high'),
-- **A deadline** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
+- **A deadline** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date),
+- **A status** ('todo', 'doing', 'done'),
+- **An assignee** (a user name).
 
 Use the provided code as a starting point and edit the [server file](app.js) and [client file](public/js/script-tasks.js) to implement the features below:
-* Add a new command `tasks add` that takes a list name, a task name (unique), a task description, a priority **['low', 'medium', 'high']** and a deadline as arguments and creates a new task object in the database.
-* Add a new command `tasks get` that takes a list name and a task name as argument and prints the task information.
-* Add a new command `tasks remove` that takes a list name and a task name as argument and deletes the task object from the database.
-* Add a new command `tasks list` that takes a list name as argument and prints all the tasks in the list.
-* Add a new command `tasks listall` that prints all the tasks in all the lists.
+* Add a new command `tasks add` that takes a task name (unique), a task description, a priority **['low', 'medium', 'high']** and a deadline as arguments and creates a new task object in the database,
+* Add a new command `tasks get` that takes a task name as argument and prints the task information,
+* Add a new command `tasks remove` that takes a task name as argument and deletes the task object from the database,
+* Add a new command `tasks list` that prints all the tasks,
+* Add a new command `tasks assign` that takes a task name and a user name as arguments and updates the task object in the database,
+* Add a new command `tasks status` that takes a task name and a status **['todo', 'doing', 'done']** as arguments and updates the task object in the database.
 
 The task manager client is available at : http://localhost:3000/tasks
 
 ### Step 5 : Advanced features and UI
-* Add a new command `tasks update` that takes a list name, a task name, a field name and a new value as arguments and updates the task object in the database.
 * Display the task list on the UI with the `renderList` function (don't forget to remove the example code).
 * Implements all the commands as a UI feature.
 
