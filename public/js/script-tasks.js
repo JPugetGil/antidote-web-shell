@@ -8,8 +8,8 @@ const POLLING_INTERVAL = 5000; // -1 == OFF
 
 const HELP_MSG = `
 tasks commands:
-    tasks add <tasks_id> <value>
-    tasks remove <tasks_id> <value>
+    tasks add <tasks_id> <values>
+    tasks remove <tasks_id> <values>
     tasks get <task_list_id> <tasks_id>
     tasks list <tasks_list>
 `;

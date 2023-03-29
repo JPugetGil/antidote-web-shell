@@ -15,7 +15,7 @@ Requirements: [node.js][nodejs], [npm][npm], [Antidote](https://antidotedb.gitbo
 To build it: `make` (or `npm install`).  
 To run it with a local cluster of Docker containers: `make run`.  
 
-To start a local Docker deployment of AntidoteDB (running three instances of Antidote): `docker-compose -f docker/docker-antidote-3dcs.yml up`.
+To start a local Docker deployment of AntidoteDB (running three instances of Antidote): `docker-compose -f docker/docker-compose.yml up`.
 To run the web server (which will listen on `localhost:3000`): `DEBUG=antidote-web-shell:* npm start`.  
 
 It uses the AntidoteDB configuration specified in `config.js`.
@@ -40,7 +40,7 @@ The following script starts:
 # in root directory
 make run
 # if you don't have make installed
-docker-compose -f docker/docker-antidote-3dcs.yml up -d
+docker-compose -f docker/docker-compose.yml up -d
 npm start
 ```
 We have now deployed this configuration:
