@@ -63,8 +63,8 @@ const apiRouter = express.Router();
 apiRouter.route('/:rep_id/set/:set_id')
     .get(function (req, res) {
         let repId = parseInt(req.params.rep_id);
-        let setId = req.params. set_id;
-        atdClis[repId-1].set(setId).read().then(content => {
+        let setId = req.params.set_id;
+        atdClis[repId - 1].set(setId).read().then(content => {
             log('Get', setId, 'from replica', repId);
             res.json({ status: 'OK', cont: content });
         });
@@ -73,8 +73,8 @@ apiRouter.route('/:rep_id/set/:set_id')
         let repId = parseInt(req.params.rep_id);
         let setId = req.params.set_id;
         let value = req.body.value;
-        atdClis[repId-1].update(
-            atdClis[repId-1].set(setId).add(value)
+        atdClis[repId - 1].update(
+            atdClis[repId - 1].set(setId).add(value)
         ).then(resp => {
             log('Add', value, 'to', setId, 'on replica', repId)
             res.json({ status: 'OK' });
@@ -84,8 +84,8 @@ apiRouter.route('/:rep_id/set/:set_id')
         let repId = parseInt(req.params.rep_id);
         let setId = req.params.set_id;
         let value = req.body.value;
-        atdClis[repId-1].update(
-            atdClis[repId-1].set(setId).remove(value)
+        atdClis[repId - 1].update(
+            atdClis[repId - 1].set(setId).remove(value)
         ).then(resp => {
             log('Remove', value, 'from', setId, 'on replica', repId)
             res.json({ status: 'OK' });
@@ -97,7 +97,7 @@ apiRouter.route('/:rep_id/count/:counter_id')
     .get(function (req, res) {
         let repId = parseInt(req.params.rep_id);
         let counterId = req.params.counter_id;
-        atdClis[repId-1].counter(counterId).read().then(content => {
+        atdClis[repId - 1].counter(counterId).read().then(content => {
             log('Get', counterId, 'from replica', repId);
             res.json({ status: 'OK', cont: content });
         });
@@ -105,8 +105,8 @@ apiRouter.route('/:rep_id/count/:counter_id')
     .put(function (req, res) {
         let repId = parseInt(req.params.rep_id);
         let counterId = req.params.counter_id;
-        atdClis[repId-1].update(
-            atdClis[repId-1].counter(counterId).increment(1)
+        atdClis[repId - 1].update(
+            atdClis[repId - 1].counter(counterId).increment(1)
         ).then(resp => {
             log('Increment', counterId, 'on replica', repId)
             res.json({ status: 'OK' });
@@ -115,8 +115,8 @@ apiRouter.route('/:rep_id/count/:counter_id')
     .delete(function (req, res) {
         let repId = parseInt(req.params.rep_id);
         let counterId = req.params.counter_id;
-        atdClis[repId-1].update(
-            atdClis[repId-1].counter(counterId).increment(-1)
+        atdClis[repId - 1].update(
+            atdClis[repId - 1].counter(counterId).increment(-1)
         ).then(resp => {
             log('Decrement', counterId, 'on replica', repId)
             res.json({ status: 'OK' });
@@ -124,15 +124,15 @@ apiRouter.route('/:rep_id/count/:counter_id')
     });
 
 
-// Tasks list API
-apiRouter.route('/:rep_id/tasks/:list_id')
+// Tasks listing API
+apiRouter.route('/:rep_id/tasks')
     .get(function (req, res) {
         // TODO: implement
         res.json({ status: 'TODO', cont: 'Implement logic' });
     });
 
 // Tasks API
-apiRouter.route('/:rep_id/tasks/:list_id/:task_id')
+apiRouter.route('/:rep_id/tasks/:task_id')
     .get(function (req, res) {
         // TODO: implement
         res.json({ status: 'TODO', cont: 'Implement logic' });
@@ -142,6 +142,20 @@ apiRouter.route('/:rep_id/tasks/:list_id/:task_id')
         res.json({ status: 'TODO', cont: 'Implement logic' });
     })
     .delete(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
+    });
+
+// Tasks status API
+apiRouter.route('/:rep_id/tasks/:task_id/status')
+    .put(function (req, res) {
+        // TODO: implement
+        res.json({ status: 'TODO', cont: 'Implement logic' });
+    });
+
+// Tasks assign API
+apiRouter.route('/:rep_id/tasks/:task_id/assign')
+    .put(function (req, res) {
         // TODO: implement
         res.json({ status: 'TODO', cont: 'Implement logic' });
     });
@@ -173,7 +187,7 @@ apiRouter.route('/:rep_id/part')
             log('Partition replica', repId, 'already set');
             res.json({ status: 'OK', rep: repId });
         } else {
-            spawn(command('create', repId), {shell: true})
+            spawn(command('create', repId), { shell: true })
                 .on('exit', function (code) {
                     if (code === 0) {
                         log('Partition replica', repId);
@@ -193,7 +207,7 @@ apiRouter.route('/:rep_id/part')
             res.json({ status: 'OK', rep: repId });
         } else {
 
-            spawn(command('remove', repId), {shell: true})
+            spawn(command('remove', repId), { shell: true })
                 .on('exit', function (code) {
                     if (code === 0) {
                         log('Remove partition over replica', repId);

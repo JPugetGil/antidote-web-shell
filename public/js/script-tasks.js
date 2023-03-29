@@ -10,12 +10,14 @@ const HELP_MSG = `
 tasks commands:
     tasks add <tasks_id> <values>
     tasks remove <tasks_id> <values>
-    tasks get <task_list_id> <tasks_id>
-    tasks list <tasks_list>
+    tasks get <tasks_id>
+    tasks list
+    tasks status <tasks_id> <status>
+    tasks assign <tasks_id> <username>
 `;
 
 const CMDS = ['tasks', 'help', 'get', 'add',
-    'remove', 'list'];
+    'remove', 'list', 'status', 'assign'];
 
 document.onkeydown = function (e) {
     // Alt+[1,2,..,9] to switch between terminals
