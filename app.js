@@ -179,6 +179,9 @@ apiRouter.route('/:rep_id/part')
                         log('Partition replica', repId);
                         partitionInfo.set(repId, false);
                         res.json({ status: 'OK', rep: repId });
+                    } else {
+                        log('An error occured on partition creation');
+                        res.status(500).json({ status: 'Failed', rep: repId });
                     }
                 });
         }
@@ -196,6 +199,9 @@ apiRouter.route('/:rep_id/part')
                         log('Remove partition over replica', repId);
                         partitionInfo.set(repId, true);
                         res.json({ status: 'OK', rep: repId });
+                    } else {
+                        log('An error occured on partition deletion');
+                        res.status(500).json({ status: 'Failed', rep: repId });
                     }
                 });
         }
