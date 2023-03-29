@@ -4,8 +4,9 @@ A demonstrative web shell that use [AntidoteDB](https://www.antidotedb.eu/) as b
 
 ## What you need
 * [Docker](https://docs.docker.com/engine/installation/)
-* [docker-compose](https://docs.docker.com/compose/install/)
+* [docker compose](https://docs.docker.com/compose/install/)
 * An IDE for Javascript development
+* /!\ You need to use an OS compatible with the `iptables` command through Docker
 
 ## Clone source code
 git clone https://github.com/JPugetGil/antidote-web-shell
@@ -15,7 +16,7 @@ Requirements: [node.js][nodejs], [npm][npm], [Antidote](https://antidotedb.gitbo
 To build it: `make` (or `npm install`).  
 To run it with a local cluster of Docker containers: `make run`.  
 
-To start a local Docker deployment of AntidoteDB (running three instances of Antidote): `docker-compose -f docker/docker-compose.yml up`.
+To start a local Docker deployment of AntidoteDB (running three instances of Antidote): `docker compose up`.
 To run the web server (which will listen on `localhost:3000`): `DEBUG=antidote-web-shell:* npm start`.  
 
 It uses the AntidoteDB configuration specified in `config.js`.
@@ -40,7 +41,7 @@ The following script starts:
 # in root directory
 make run
 # if you don't have make installed
-docker-compose -f docker/docker-compose.yml up -d
+docker compose up -d
 npm start
 ```
 We have now deployed this configuration:

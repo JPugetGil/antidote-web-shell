@@ -14,10 +14,10 @@ start-server-testenv:
 	PORT=3000 NODE_ENV=production npm start > webshell.log 2>&1
 
 start-docker:
-	docker-compose -f docker/docker-compose.yml up -d
+	docker compose up -d
 
 stop-docker:
-	docker-compose -f docker/docker-compose.yml down
+	docker compose down
 
 clean: stop-docker
 	npm run clean

@@ -163,12 +163,12 @@ apiRouter.route('/:rep_id/tasks/:task_id/assign')
 const command = (type, param) => {
     switch (type) {
         case 'ispart':
-            return `docker compose -f docker/docker-compose.yml exec --privileged antidote${param} bash -c 'iptables -L -n -v'`
+            return `docker compose exec --privileged antidote${param} bash -c 'iptables -L -n -v'`
         case 'create':
-            return `docker compose -f docker/docker-compose.yml exec -d --privileged antidote${param} bash -c \
+            return `docker compose exec -d --privileged antidote${param} bash -c \
             'iptables -A INPUT -p tcp --dport 8086 -j DROP; iptables -A OUTPUT -p tcp --dport 8086 -j DROP';`;
         case 'remove':
-            return `docker compose -f docker/docker-compose.yml exec -d --privileged antidote${param} bash -c \
+            return `docker compose exec -d --privileged antidote${param} bash -c \
             'iptables -D INPUT -p tcp --dport 8086 -j DROP; iptables -D OUTPUT -p tcp --dport 8086 -j DROP';`
     }
 
